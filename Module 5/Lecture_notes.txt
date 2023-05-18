@@ -1,0 +1,182 @@
+Basic Skill of Cloud Data Engineer - Part:2
+--------------------------------------------
+
+Basics of Linux - 
+	Linux is a family of Unix like operating systems based on the Linux kernel. 
+	A Unix-like (sometimes referred to as UN*X or *nix) operating system is one that behaves in a manner similar to a Unix system, although not necessarily conforming to or being certified to any version of the Single UNIX Specification. 
+	Unix is a family of multitasking, multi-user computer operating systems.
+	Linux has a different package manager and Mac has a different package manager.
+	Why Linux - Linux is free, open-source and very powerfull. Anyone can use it. It can run on any electronic machine - like fridge, car, phone, etc. 
+	Linux distribution/distro - A Linux distribution[a] (often abbreviated as distro) is an operating system made from a software collection that includes the Linux kernel, and often a package management system. 
+	E.g. Ubuntu, Kali, Linux Mint, etc.
+	
+Introduction to Shell - 
+	A shell script is a computer program designed to be run by a Unix shell, a command-line interpreter.
+	The various dialects of shell scripts are considered to be scripting languages. Typical operations performed by shell scripts include file manipulation, program execution, and printing text.
+	REPL - Read Evaluate Print Loop
+	Terminals are REPL consoles. It is like an infinite loop running. In every iteration of the loop it reads the valid command from the user, evaluates that command, whatever is the result of that command it will print it and loops again.
+	Linux terminal used by us is a bash shell or bash terminal. 
+	
+Commands: Part 1 -
+	pwd - prints the name of the current directory.
+	'pwd --help' and 'man pwd' both these commands can be used for getting more information on pwd command
+	'ls' - prints the directory contents including folders and files.
+	'cd' - change directory / move to a folder/path or move out of a folder
+	'cd ..' will take us back to the parent of the current folder we are in.
+	'cd ../..' will take us two folders back.
+	'cd ~' will take us to the home directory of current user
+	"/" is used to separate directories in Linux. (In Windows it is "\")
+	
+Relative and Absolute Path - 
+	'~' or tilda refers to the home directory.
+	'/' is the root node or root folder.
+	Relative path - It describes the location of a file/folder w.r.t current folder, whereas in an absolute path we mention the location from the home directory or root directory. 
+	When you give the absolute path of a file or folder that means you will give the whole path of that file or folder whereas in the relative path you do jumps w.r.t current folder.
+	
+Commands: Part 2 - 
+	'clear' - clears the working space by moving us to the top of the current shell. It does not clear the history.
+	'ls -l' lists the files in a folder (owner, permissions, date)
+	'ls -a' will list hidden files/folders in a folder
+	'ls -lh' lists the files in a folder, but also includes the file size (owner, permissions, date, size)
+	'ls --help' lists what flags can be used with ls command
+	
+Creating Files and Folders , VIM Introduction -
+	'mkdir' - create new folder | mkdir folder_name
+	'touch' - create new file with given extension | touch file_name.extension
+	'cat' - prints the complete contents of a file | cat file_name
+	'rm' - removes a file | rm file_name | rm folder_name will not work
+	'rmdir' - removes a directory which is empty | rmdir folder_name, here folder_name has no contents
+	'rm -r' - removes recursively all the contents of a folder and then deletes the folder. | rm - r folder_name
+	'rm -rf' -  removes recursively and forcefully (without any warnings) all the contents of a folder and then deletes the folder | rm -rf folder_name
+	Avoid using rm -rf as much as possible.
+	
+	VIM - text editor
+	Exit - Esc + ':q' or Esc + ':q!' [Esc + ':q!' - file has changes and we want to exit without saving it]
+	Save and Exit - Esc + ':wq'
+	In casual conversation, Vi and Vim are interchangeable and usually refer to Vim (Vi Improved). On some POSIX systems, the vi command is a pointer to Vim (or else Vim is just called Vi). However, some systems ship just with Vi and you have to install Vim separately.
+	
+Navigation in Vim -
+	Vim has different modes that enable us to do different things.
+	Insert mode - we can make changes to a file.
+	Normal mode - navigate inside the file without making any changes to it. Also, read it.
+	Command mode - we can execute certain commands.
+	
+	'vim file_name' this will create a file (if it doesn't exist) and then open it in the normal mode in vim.
+	
+	Opening a file or Esc - Normal mode
+	I or Insert - Insert mode
+	
+	Normal mode navigation - 
+	To move the cursor to the right - L
+	To move the cursor to the left - H
+	To move the cursor to the down - J
+	To move the cursor to the up - K
+	Delete a line - 'd''d' (Press 'd' twice)
+	
+	To Learn Vim - https://vim-adventures.com/
+	
+Vim Commands , VIMRC -
+	'ls | grep python' - this will pass the output of the 'ls' command as an input to the 'grep' command. 'grep' command does a substring search of the word 'python' on the output of 'ls' command.
+	'ls > new.txt ' - the result of 'ls' command will be dumped into new.txt and nothing will be printed on the console. If new.txt file has some content already then that will be replaced. 
+	'ls >> new.txt ' - the result of 'ls' command will be dumped into new.txt and nothing will be printed on the console. If new.txt file has some content already then the new content will be appended.
+	'command1 && command2' - this executes command1 followed by command2 considering command1 has no errors. 
+	'cp file1.txt file2.txt' - copies the contents of file1 to file2
+	'mv file1.txt file2.txt' - moves (cut paste) the file1 to a new position as file2. This can also help us to rename a file.
+	
+Commands: Part 3 -
+	'tail file_name' - will print the last few lines of the file.
+	'tail -n 3 file_name' - will print the last 3 lines of the file.
+	'tail -f file_name' - will show the last few lines of the file but without exiting. The tail -f command can be used to monitor the growth of a file being written by another process. 
+	'head file_name' - will print the starting few lines of the file.
+	'head -n 3 file_name' - will print the starting 3 lines of the file.
+	'echo "some_text"' - works like print. Will print the string or text in between " " to the screen.
+	'echo "some_text" > file.txt' - Will dump the string or text in between " " to the file.txt. Nothing will be printed on the screen.
+	
+Piping -
+	' | ' - Pipe takes the output of one command and passes it as an input to the next command.
+	'ls | grep python' - this will pass the output of the 'ls' command as an input to the 'grep' command. 'grep' command does a substring search of the word 'python' on the output of 'ls' command.
+	'ps aux' - a tool to monitor all the processes running on your Linux system. 
+	'ps aux | grep mysql' - this will pass the output of the 'ps aux' command as an input to the 'grep' command. 'grep' command does a substring search of the word 'mysql' on the output of 'ps aux' command. Here we are searching for processes that are related to mysql.
+	
+Dumping Data and Boolean logics with Commands -
+	'command1 && command2' - this executes command1 followed by command2 considering command1 has no errors. Here '&&' acts as a logical AND operator.
+	Executing a C++ program in Linux -
+		g++ file_name.cpp --std=c++14 -o run		//C++14 is the version of C++ we want to use and 'run' is the name of the binary it will create after compilation.
+		ls | grep run
+		./run		//this will execute the binary and will print the output to the console.
+		
+		g++ file_name.cpp --std=c++14 -o run && ./run		// this will compile and run the C++ program in one step
+		
+Commands: Part 4 -
+	This section has repetition. 
+	
+Zipping and Creating Archives -
+	TAR stands for Tape Archive.
+	
+	'tar -cvf archive.zip file1.txt file2.txt' - creates a zip file called archive.zip with compressed files - file1.txt and file2.txt. c stands for creation. f for specifying the tar archive file name. v for verbose output. z flag to specify we need the files to be compressed using gunzip.
+	
+	1. Create tar Archive -
+		tar cvf <tar-file-name> <files-to-archive>
+	2. Create Compressed Archive (GZ) - One of the popular compression formats is gunzip, usually represented by extension .gz after .tar or as tgz.
+		tar cvzf archive.tar.gz file_name(s)*
+	3. Create Compressed Archive (BZ2) - tar supports several other compression formats. One of them is bz2 or bzip2 which is represented by extension tar.bz2 or sometimes as tbz2. It may give you a smaller archive size but in turn consumes more CPU, so the process of compressing/decompressing could be slower than gz archive.
+		tar cvjf archive.tar.bz2 file*
+	4. Untar All Files/Unzip the compressed file -
+		tar xvf archive.tar
+	5. List tar Contents -
+		tar tvf archive.tar.bz2
+	6. Untar Specific Files - 
+		tar xvf archive.tar.bz2 file1.txt
+		tar xvf archive.tar.bz2 file1.txt file3.txt
+	7. Untar using Wildcard -
+		tar xvf archive.tar.bz2 --wildcards "file*"
+	8. Add Files to Archive - New files can be added/appended to existing uncompressed tarballs by using r or --append flag with new file names or wildcard pattern (remember this only works with uncompressed .tar files and not with tar.gz or tar.bz2 compressed formats)
+		tar rvf archive.tar file-new*
+	9. Delete Files from Archive - This works only for uncompressed tarballs and will fail for compressed archive formats.
+		tar --delete -f archive.tar file-new.txt file-new2.txt
+	10. Create with Verify - While creating uncompressed tar files, you can verify the contents of the archive using W flag. This can’t be used with compression flags though you can compress the created tar file later using gzip or other tools.
+		tar cvfW archive.tar file*.txt
+		file1.txt
+		file2.txt
+		file3.txt
+		Verify file1.txt
+		Verify file2.txt
+		Verify file3.txt
+	11. Extract tar to Folder - use -C flag with the directory path
+		tar xvf archive.tar -C new-directory/
+	12. Use diff Flag - You can use --diff or d flag to find any changes between the files in the tar archive and the ones in the filesystem.
+		$ tar dvf archive.tar file4.txt
+		file4.txt
+		$
+		$ echo newline > file4.txt
+		$
+		$ tar dvf archive.tar file4.txt
+		file4.txt
+		file4.txt: Mod time differs
+		file4.txt: Size differs
+		$
+	13. Exclude Files - Excluding specific files can be a requirement while creating tar archives. This can be achieved with --exclude flag. We can specify the --exclude flag multiple times to specify multiple file names or patterns in AND condition.
+		tar --exclude="dir/file2.txt" --exclude="dir/file-new*.txt" -cvzf archive.tar.gz dir/
+		dir/
+		dir/file1.txt
+		dir/file3.txt
+		$ ls -l dir
+		total 24
+		-rw-r--r-- 1 raghavanmohan raghavanmohan 9 Sep 19 19:10 file-new.txt
+		-rw-r--r-- 1 raghavanmohan raghavanmohan 9 Sep 19 19:10 file-new2.txt
+		-rw-r--r-- 1 raghavanmohan raghavanmohan 5 Sep 19 19:20 file-new3.txt
+		-rw-r--r-- 1 raghavanmohan raghavanmohan 5 Sep 19 19:27 file1.txt
+		-rw-r--r-- 1 raghavanmohan raghavanmohan 6 Sep 19 19:27 file2.txt
+		-rw-r--r-- 1 raghavanmohan raghavanmohan 8 Sep 19 19:27 file3.txt
+		$ tar tvf archive.tar.gz
+		drwxr-xr-x raghavanmohan/raghavanmohan 0 2021-09-19 19:30 dir/
+		-rw-r--r-- raghavanmohan/raghavanmohan 5 2021-09-19 19:27 dir/file1.txt
+		-rw-r--r-- raghavanmohan/raghavanmohan 8 2021-09-19 19:27 dir/file3.txt
+		$
+	14. View tar Content Size - We can get the size of the contents of a compressed tar archive
+		$ tar tvf archive.tar.gz
+		-rw-r--r-- raghavanmohan/raghavanmohan 13 2021-09-12 20:08 file1.txt
+		-rw-r--r-- raghavanmohan/raghavanmohan 19 2021-09-12 20:08 file2.txt
+		-rw-r--r-- raghavanmohan/raghavanmohan 24 2021-09-12 20:08 file3.txt
+		$ tar -xzf archive.tar.gz --to-stdout|wc -c
+		56
