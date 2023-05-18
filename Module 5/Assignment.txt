@@ -1,0 +1,83 @@
+Problem 1 - Create a new directory called "assignment1" in your home directory. Inside "assignment1", create a new file called "file1.txt". Append the text "Hello World" to "file1.txt".
+
+ubuntu@ip-172-31-82-133:~$ mkdir assignment1
+ubuntu@ip-172-31-82-133:~$ touch assignment1/file1.txt
+ubuntu@ip-172-31-82-133:~$ echo "Hello World" >> assignment1/file1.txt
+ubuntu@ip-172-31-82-133:~$ cd assignment1/
+ubuntu@ip-172-31-82-133:~/assignment1$ ls -lrt
+total 4
+-rw-rw-r-- 1 ubuntu ubuntu 12 May 18 21:20 file1.txt
+ubuntu@ip-172-31-82-133:~/assignment1$ cat file1.txt
+Hello World
+ubuntu@ip-172-31-82-133:~/assignment1$
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+Problem 2 - Figure out how can you use nslookup to find name and IP address of SMTP server of gmail.com
+
+ubuntu@ip-172-31-82-133:~$ nslookup -type=mx gmail.com
+Server:         127.0.0.53
+Address:        127.0.0.53#53
+
+Non-authoritative answer:
+gmail.com       mail exchanger = 5 gmail-smtp-in.l.google.com.
+gmail.com       mail exchanger = 40 alt4.gmail-smtp-in.l.google.com.
+gmail.com       mail exchanger = 10 alt1.gmail-smtp-in.l.google.com.
+gmail.com       mail exchanger = 30 alt3.gmail-smtp-in.l.google.com.
+gmail.com       mail exchanger = 20 alt2.gmail-smtp-in.l.google.com.
+
+Authoritative answers can be found from:
+
+ubuntu@ip-172-31-82-133:~$ nslookup gmail-smtp-in.l.google.com
+Server:         127.0.0.53
+Address:        127.0.0.53#53
+
+Non-authoritative answer:
+Name:   gmail-smtp-in.l.google.com
+Address: 142.251.163.27
+Name:   gmail-smtp-in.l.google.com
+Address: 2607:f8b0:4004:c1b::1a
+
+Verified this from https://mxtoolbox.com/SuperTool.aspx?action=mx%3agmail.com&run=toolpage.
+
+Name for SMTP server of gmail.com - gmail-smtp-in.l.google.com
+IP for SMTP server of gmail.com - 142.251.163.27
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+Problem 3 - Create a compressed archive of the "assignment1" directory in your home directory. Save the archive as "assignment1.tar.gz". Delete the "assignment1" directory.
+
+ubuntu@ip-172-31-82-133:~$ pwd
+/home/ubuntu
+ubuntu@ip-172-31-82-133:~$ ls -lrt
+total 4
+drwxrwxr-x 2 ubuntu ubuntu 4096 May 18 21:20 assignment1
+ubuntu@ip-172-31-82-133:~$ tar -cvzf assignment1.tar.gz assignment1/
+assignment1/
+assignment1/file1.txt
+ubuntu@ip-172-31-82-133:~$ ls -lrt
+total 8
+drwxrwxr-x 2 ubuntu ubuntu 4096 May 18 21:20 assignment1
+-rw-rw-r-- 1 ubuntu ubuntu  179 May 18 21:26 assignment1.tar.gz
+ubuntu@ip-172-31-82-133:~$ rm -rf assignment1
+ubuntu@ip-172-31-82-133:~$ ls -lrt
+total 4
+-rw-rw-r-- 1 ubuntu ubuntu 179 May 18 21:26 assignment1.tar.gz
+ubuntu@ip-172-31-82-133:~$
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+Problem 4 - Try to play this game to refresh your knowledge om VIM: https://vim-adventures.com/
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+Problem 5 - Create a new file called "assignment1.txt" using Vim. Type the text "This is my first Vim file" on the first line. Move to the second line and type "I am learning Vim". Save and exit Vim.
+
+ubuntu@ip-172-31-82-133:~$ vim assignment1.txt
+ubuntu@ip-172-31-82-133:~$ cat assignment1.txt
+This is my first Vim file
+I am learning Vim
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+Thank You
