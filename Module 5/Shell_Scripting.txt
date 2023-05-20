@@ -1,0 +1,247 @@
+Shell Scripting
+---------------
+
+if then else -
+	The if then else condition loop states that if condition meets, output goes to if part otherwise, it goes to the else part.
+	The word fi represents the if loop termination.
+	
+	if then else expression -
+		if [condition]
+		then
+		echo "statement"
+		else
+		echo "statement"
+	
+1. Program to check eligibility to vote - 	
+
+	echo "Enter your age"
+	read age
+
+	if [ $age -ge 18 ]
+	then
+			echo "You are eligible to vote."
+	else
+			echo "You are too young to vote!"
+	fi
+	
+2. Slight variation in above program - 
+	age < 18 -> Not eligible to vote.
+	age >= 18 and age <= 70 -> You are eligible to vote.
+	age > 70 -> Too old to vote!
+	
+	echo "Enter your age -"
+	read age
+
+	if [ $age -lt 18 ]
+	then
+			echo "Not eligible to vote."
+	elif [ $age -gt 70 ]
+	then
+			echo "Too old to vote!"
+	else
+			echo "You are eligible to vote."
+	fi
+
+	File permissions -
+	r - read
+	w - write
+	x- execute
+
+	chmod [options] [mode] [filename]
+	chmod 674 [filename]
+
+	6 - fileowner(rw)
+	7 - group (rwx)
+	4 - others (r)
+
+	chmod 777 [filename] - this gives all the permissions to everyone.
+
+3. Accepting arguments and printing them on screen
+
+	vi greetings.sh
+	echo "Hello, $1"
+
+	sh greetings.sh Raghavan
+	Hello, Raghavan - this is the output
+
+4. Reading txt file and printing values on screen using while
+
+	root@tryit-proven:~# touch input.txt                                                                                                                
+	root@tryit-proven:~# ls -lrt                                                                                                                        
+	total 4                                                                                                                                             
+	-rw-r--r-- 1 root root 17 May 20 16:34 greetings.sh                                                                                                 
+	-rw-r--r-- 1 root root  0 May 20 16:39 input.txt                                                                                                    
+	root@tryit-proven:~# echo "Raghavan" > input.txt                                                                                                    
+	root@tryit-proven:~# while read line                                                                                                                
+	> do                                                                                                                                                
+	> echo "Hello, $line"                                                                                                                               
+	> done < input.txt                                                                                                                                  
+	Hello, Raghavan
+	
+5. Looping | While Loop
+
+	Print numbers from 1 to 10.
+	
+	num=1
+	while [ $num -le 10 ]
+	do
+			echo $num
+			num=`expr $num + 1`
+	done
+	
+	Alternate way to do the same without using `expr '
+	
+	num=1
+	while [ $num -le 10 ]
+	do
+			echo $num
+			(( num += 1 ))
+	done
+	
+	ubuntu@ip-172-31-82-133:~$ source whileloop2.sh
+	1
+	2
+	3
+	4
+	5
+	6
+	7
+	8
+	9
+	10
+	ubuntu@ip-172-31-82-133:~$ bash whileloop2.sh
+	1
+	2
+	3
+	4
+	5
+	6
+	7
+	8
+	9
+	10
+	
+	Running sh whileloop2.sh will not work and give error. 
+	Refer to https://stackoverflow.com/questions/21370059/why-is-this-simple-for-loop-in-my-linux-bash-not-working
+	
+6. Looping | For Loop
+
+	// {starting..ending}		
+	for i in {1..10}
+	do
+			echo $i
+	done
+	
+	// {starting..ending..counter}
+	for i in {1..5..1}
+	do
+			echo $i
+	done
+	
+	ubuntu@ip-172-31-82-133:~$ source forloop.sh
+	1
+	2
+	3
+	4
+	5
+	ubuntu@ip-172-31-82-133:~$ bash forloop.sh
+	1
+	2
+	3
+	4
+	5
+
+7. Checking bash version in Linux
+
+	bash --version
+	echo ${BASH_VERSION}
+	
+8. Switch statement
+	// For specifying default case use "*)"
+
+	fruit="banana"
+
+	case $fruit in
+			"apple")
+					echo "It is a red color fruit"
+					;;
+			"banana")
+					echo "It is a yellow color fruit"
+					;;
+			"orange")
+					echo "It is an orange color fruit"
+					;;
+			*)
+					echo "It is an unknown fruit"
+					;;
+	esac
+	
+9. Functions
+	
+	function myFunc() {
+        echo "Hello, we are inside a function"
+	}
+	myFunc
+	
+	ubuntu@ip-172-31-82-133:~$ source functions.sh
+	Hello, we are inside a function
+	ubuntu@ip-172-31-82-133:~$ bash functions.sh
+	Hello, we are inside a function
+
+	Function accepting arguments - Here arguments are passed inside the sh file itself. 
+	
+	function myFunc() {
+        echo "Hello, $1 $2"
+	}
+	myFunc Raghavan Mohan
+	
+	ubuntu@ip-172-31-82-133:~$ source functions2.sh
+	Hello, Raghavan Mohan
+	ubuntu@ip-172-31-82-133:~$ bash functions2.sh
+	Hello, Raghavan Mohan
+	
+	If the argument is to be passed from outside the sh file at runtime -
+	
+	function myFunc() {
+        echo "Hello, $1 $2"
+	}
+	myFunc $1 $2
+	
+	ubuntu@ip-172-31-82-133:~$ source functions2.sh Raghavan Mohan
+	Hello, Raghavan Mohan
+	ubuntu@ip-172-31-82-133:~$ bash functions2.sh Raghavan Mohan
+	Hello, Raghavan Mohan
+	
+10. Crons-
+	Cron is a very powerful utility for job scheduling that is available for Unix like OS.
+	Syntax -
+	***** sh /path/to/our/script_file.sh
+	
+	* From left to right
+	
+	1st * - minutes (0-59)
+	2nd * - hour (0-23)
+	3rd * - day of the month (1-31)
+	4th * - month (1-12)
+	5th * - day of the week (0-6) or (1-7)
+	
+	0 0 * * * - runs a shell script at midnight every day
+	*/5 * * * * - runs the script every 5 minutes [Create a list of all the minutes and run the script for every 5th value
+	or in other words every 5 minutes]
+	0 6 * * 1-5 - runs the script at 6 a.m. from Mon to Fri (on weekdays)
+	0 12 1 * * - runs the script on the 1st day of every month at noon
+	
+	ubuntu@ip-172-31-82-133:~$ crontab -e
+	no crontab for ubuntu - using an empty one
+
+	Select an editor.  To change later, run 'select-editor'.
+	  1. /bin/nano        <---- easiest
+	  2. /usr/bin/vim.basic
+	  3. /usr/bin/vim.tiny
+	  4. /bin/ed
+
+	Choose 1-4 [1]:
+	
+	Enter the number for the editor needed.
+	
+	Save and exit the cron job.
