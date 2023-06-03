@@ -1,0 +1,118 @@
+Q 1 - In a Hadoop cluster, what is true for a HDFS block that is no longer available due to disk corruption or machine failure?
+
+A - It is lost for ever
+B - It can be replicated form its alternative locations to other live machines. (Correct Ans)
+C - The namenode allows new client request to keep trying to read it.
+D - The Mapreduce job process runs ignoring the block and the data stored in it.
+
+Q 2 - Which one of the following is not a main component of HBase?
+
+A - Region Server.
+B - Nagios. (Correct Ans)
+C - ZooKeeper.
+D - Master Server.
+
+Q 3 - When a client communicates with the HDFS file system, it needs to communicate with
+ 
+A - only the namenode
+B - only the data node
+C - both the namenode and datanode (Correct Ans)
+D - None of these
+
+Q 4 - Which of the following is not a Hadoop operation mode?
+
+A - Pseudo distributed mode
+B - Globally distributed mode (Correct Ans)
+C - Stand alone mode
+D - Fully-Distributed mode
+
+Q 5 - The information mapping data blocks with their corresponding files is stored in
+
+A - Data node
+B - Job Tracker
+C - Task Tracker
+D – Namenode (Correct Ans)
+
+Q 6 - HDFS stands for
+
+A - Highly distributed file system.
+B - Hadoop directed file system
+C - Highly distributed file shell
+D - Hadoop distributed file system. (Correct Ans)
+
+Q 7 - The source of HDFS architecture in Hadoop originated as
+
+A - Google distributed filesystem (Correct Ans)
+B - Yahoo distributed filesystem
+C - Facebook distributed filesystem
+D - Azure distributed filesystem
+
+Q 8 - The current limiting factor to the size of a hadoop cluster is
+
+A - Excess heat generated in data center
+B - Upper limit of the network bandwidth
+C - Upper limit of the RAM in namenode (Correct Ans)
+D - 4000 data nodes
+
+Q 9 - The namenode loses its only copy of fsimage file. We can recover this from
+
+A - Datanodes
+B - Secondary namenode
+C - Checkpoint node (Correct Ans)
+D – Never
+
+Q 10 - Which of the following technologies is a document store database?
+
+A - HBase
+B - Hive
+C - Cassandra
+D – CouchDB (Correct Ans)
+
+Split the Data into Columns
+
+Assignment: A CSV data file including movie names and their release years is supplied to you. Your assignment as follows:
+
+1) You must divide the information into two columns: “ReleasedYear” and “MovieTitle.
+2) Identify the duplicate entries.
+3) Find out how many times the word “red” appears in a title.
+
+Solution -
+
+import csv
+
+def read_csv(file_path):
+    duplicates = set()
+    with open(file_path, 'r') as csv_file:
+        reader = csv.reader(csv_file)
+        next(reader)
+        for row in reader:
+            if len(row) >= 2:
+                column1 = row[0]
+                column2 = row[1]
+                print(f'ReleasedYear: {column1}\tMovieTitle: {column2}')
+                data = (column1, column2)
+                if data in duplicates:
+                    print(f'This is a duplicate entry: {data}')
+                else:
+                    duplicates.add(data)
+                    
+def count_occurrences(file_path, search_word):
+    count = 0
+    with open(file_path, 'r') as csv_file:
+        reader = csv.reader(csv_file)
+        next(reader)  # Skip header if present
+        for row in reader:
+            if len(row) >= 2:
+                column2 = row[1]
+                if search_word in column2:
+                    count += 1
+    return count
+
+
+# Provide the path to your CSV file here
+csv_file_path = "C:\\Users\\raghavan\\Downloads\\MoviesData.csv"
+read_csv(csv_file_path)
+
+search_word = "red"
+occurrences = count_occurrences(csv_file_path, search_word)
+print(f'The word "{search_word}" occurs {occurrences} times in MovieTitle column.')
